@@ -85,6 +85,7 @@ function sortableDropped(event, ui) {
         if(child.style.display == "none") {
 
             jQuery(child).fadeIn(500);
+            jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, "slow");
             break;
         }
     }
