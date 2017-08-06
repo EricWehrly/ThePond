@@ -29,25 +29,18 @@
 
                 <div class="task-parent">
 
-                    You have completed your pending tasks.
-                    <br />
-                    <button class="btn btn-primary" onClick="nextTask()">
-                        Please, sir, may I have some more?
-                    </button>
-                </div>
+                    <h3 class="clearfix">Preference? &#x2696</h3>
 
-                <div class="task-parent">
-
-                    <div class="row clearfix">
-                        <h3>Preference?</h3>
-                    </div>
-
-                    <div class="row"> 
-                        <div class="horizontal-center col-md-4 card" onClick="genderPreference('male');">
-                            &#x1F346
+                    <div class="row horizontal-center">
+                        <div class="panel panel-default">
+                            <div class="panel-body"  onClick="genderPreference('male');" style="color: purple;">
+                                &#x1F346
+                            </div>
                         </div>
-                        <div class="horizontal-center col-md-4 card" onClick="genderPreference('female');">
-                            &#x1F638
+                        <div class="panel panel-default">
+                            <div class="panel-body"  onClick="genderPreference('female');" style="color: orange;">
+                                &#x1F638
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +63,16 @@
                         </div>
                     </div>
                 </div>
-                
+
+                <div class="task-parent">
+
+                    You have completed your pending tasks.
+                    <br />
+                    <button class="btn btn-primary" onClick="nextTask()">
+                        Please, sir, may I have some more?
+                    </button>
+                </div>
+
             </div>
         </div>
         

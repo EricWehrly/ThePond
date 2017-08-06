@@ -1,6 +1,7 @@
 
 // https://jsfiddle.net/ramnathv/1064q7jm/
 // https://www.w3schools.com/w3css/w3css_cards.asp
+// http://www.unicode.org/emoji/charts/full-emoji-list.html
 
 var currentTask = 0;
 
@@ -37,4 +38,11 @@ function shakeDeny(element, message) {
 
     // show a message, in red, at the bottom of the page 
         // (explaining the error)
+}
+
+function genderPreference(preference) {
+
+    console.log(preference);
+
+    
 }
