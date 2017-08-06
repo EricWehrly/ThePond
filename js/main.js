@@ -6,7 +6,15 @@
 var LocalUser = {};
 var currentTask = 0;
 
+jQuery( window ).resize(function() {
+
+    var picHeight = parseInt(jQuery(".profile-pic").css("height"));
+    jQuery(".profile-pic").css("width", (picHeight * 1.25) + "px");
+});
+
 jQuery(function() {
+
+    jQuery(window).trigger('resize');
 
     var ul = document.querySelector('.sortable');
     for (var i = ul.children.length; i >= 0; i--) {
@@ -14,7 +22,8 @@ jQuery(function() {
     }
 
     jQuery( ".sortable" ).sortable({
-        placeholder: "ui-state-highlight"
+        placeholder: "profile-panel-placeholder",
+        stop: sortableDropped
     }).disableSelection();
 
     // for sorted lists, hide all but the first three
@@ -60,4 +69,27 @@ function genderPreference(preference) {
     // jQuery(".task-parent .panel-body:not(." + preference + ")").parent().fadeOut(500, function() {
         nextTask();
     // });
+}
+
+function sortableDropped(event, ui) {
+
+    // console.log(event);
+    // console.log(ui);
+    var sortContainer = event.target;
+    var droppedClass = event.toElement.className;
+
+    var children = jQuery(sortContainer).children();
+    for(var index in children) {
+        var child = children[index];
+        console.log(child);
+        if(child.style.display == "none") {
+
+            jQuery(child).fadeIn(500);
+            break;
+        }
+    }
+}
+
+function buildImageSort(items) {
+
 }

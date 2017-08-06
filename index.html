@@ -20,6 +20,7 @@
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/vendor/jquery-ui.min.js"></script>
 
+        <script type="text/javascript" src="js/sortable-items.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </head>
 
@@ -35,23 +36,23 @@
                     <div class="row horizontal-center">
                         <div class="panel panel-default">
                             <div class="panel-body male"  onClick="genderPreference('male');" style="color: purple;">
-                                &#x1F346
+                                🍆
                             </div>
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-body female"  onClick="genderPreference('female');" style="color: orange;">
-                                &#x1F638
+                                😸
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="attractiveness-female" class="task-parent">
+                <div class="task-parent">
 
                     <h3 class="clearfix">Sort by attractiveness</h3>
 
                     <div class="row"> 
-                        <div class="horizontal-center col-md-5 sortable">
+                        <div id="female" class="horizontal-center sortable">
                             <div class="panel panel-default">
                                 <div class="panel-body profile-pic hetvi"></div>
                             </div>
