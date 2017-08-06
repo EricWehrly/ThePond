@@ -1,5 +1,6 @@
 html, body, .container-table {
     height: 100%;
+    font-family: inherit;
 }
 .container-table {
     display: table;
@@ -18,9 +19,9 @@ html, body, .container-table {
 body {
     background-color: #11a9e2;
     text-rendering: optimizeLegibility;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;    
     text-shadow: 2px 2px slategrey;
     /*
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;    
     font: 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
     */
