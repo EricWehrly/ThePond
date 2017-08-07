@@ -1,6 +1,8 @@
 html, body, .container-table {
     height: 100%;
     font-family: inherit;
+    
+    font-family: arial,sans-serif;
 }
 .container-table {
     display: table;
