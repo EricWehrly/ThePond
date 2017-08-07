@@ -67,8 +67,14 @@ function genderPreference(preference) {
     LocalUser.GenderPreference = preference;
 
     // jQuery(".task-parent .panel-body:not(." + preference + ")").parent().fadeOut(500, function() {
+        var genderArray = Profiles.filter(genderPreferenceFilter);
+        buildImageSort(genderArray)
         nextTask();
     // });
+}
+
+function genderPreferenceFilter(element) {
+    return element.gender == LocalUser.GenderPreference;
 }
 
 function sortableDropped(event, ui) {
@@ -78,19 +84,18 @@ function sortableDropped(event, ui) {
     var sortContainer = event.target;
     var droppedClass = event.toElement.className;
 
-    var children = jQuery(sortContainer).children();
-    for(var index in children) {
-        var child = children[index];
-        console.log(child);
-        if(child.style.display == "none") {
+    jQuery(sortContainer).children().each(function( index ) {
+        if(this.style.display == "none") {
 
-            jQuery(child).fadeIn(500);
+            jQuery(this).fadeIn(500);
             jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, "slow");
-            break;
+
+            return false;
         }
-    }
+    });
 }
 
 function buildImageSort(items) {
 
+    console.log(items);
 }
