@@ -1,6 +1,6 @@
 
 var Profiles = [
-    
+
     {
         name: "eric",
         gender: "male"
@@ -27,6 +27,14 @@ var Profiles = [
     },
     {
         name: "wes",
+        gender: "male"
+    },
+    {
+        name: "satoshi",
+        gender: "male"
+    },
+    {
+        name: "raz",
         gender: "male"
     },
     
