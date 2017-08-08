@@ -14,22 +14,7 @@ jQuery( window ).resize(function() {
 
 jQuery(function() {
 
-    jQuery(window).trigger('resize');
-
-    /*
-    var ul = document.querySelector('.sortable');
-    for (var i = ul.children.length; i >= 0; i--) {
-        ul.appendChild(ul.children[Math.random() * i | 0]);
-    }
-
-    jQuery( ".sortable" ).sortable({
-        placeholder: "profile-panel-placeholder",
-        stop: sortableDropped
-    }).disableSelection();
-    */
-
-    // for sorted lists, hide all but the first three
-    // jQuery(".sortable .panel:gt(2)").hide();
+    // jQuery(window).trigger('resize');
 
     showTask();
 });
@@ -41,10 +26,10 @@ function showTask(taskNumber) {
     if(taskNumber == null) taskNumber = currentTask;
 
     if(jQuery(".task-parent:visible").length == 0) {
-        jQuery(jQuery(".task-parent")[taskNumber]).fadeIn(500);
+        jQuery(jQuery(".task-parent")[taskNumber]).fadeIn(400);
     } else {
-        jQuery(".task-parent:visible").fadeOut(750, function() {
-            jQuery(jQuery(".task-parent")[taskNumber]).fadeIn(500);
+        jQuery(".task-parent:visible").fadeOut(500, function() {
+            jQuery(jQuery(".task-parent")[taskNumber]).fadeIn(400);
         });
     }
 }
@@ -52,6 +37,9 @@ function showTask(taskNumber) {
 function nextTask() {
 
     currentTask++;
+
+    // TODO: if there are no tasks or whatever,
+    // buildTaskCompletePrompt()
 
     showTask();
 }
@@ -70,7 +58,9 @@ function genderPreference(preference) {
 
     // jQuery(".task-parent .panel-body:not(." + preference + ")").parent().fadeOut(500, function() {
         var genderArray = shuffle(Profiles.filter(genderPreferenceFilter));
-        buildImageSort(genderArray)
+        // buildTaskCompletePrompt();
+        buildImageSort(genderArray);
+        // buildWordSort(Adjectives.Positive); 
         nextTask();
     // });
 }
@@ -109,23 +99,74 @@ function sortableSorted(event, ui) {
     jQuery("html, body").animate({ scrollTop: event.clientY }, "slow");
 }
 
+function buildTaskCompletePrompt() {
+
+    var taskElement = buildTaskEncapsulation();
+
+    jQuery('<h3 class="clearfix">You have completed your pending tasks.</h3>')
+        .appendTo(taskElement);
+
+    jQuery('<button class="btn btn-primary" onClick="buildWordSort(Adjectives.Positive); nextTask();">' 
+                        + 'Please, sir, may I have some more?'
+                    + '</button>')
+        .appendTo(taskElement);
+}
+
 function buildImageSort(items) {
+
+    var imageSort = buildTaskEncapsulation();
 
     for(var index in items) {
         jQuery('<div class="panel panel-default profile-pic ' 
             + items[index].name + '" style="background-image: url(\'img/' + 
             items[index].name + '.jpg\')"></div>')
-            .appendTo("#profile-sort .sortable");
+            .appendTo(imageSort);
     }
+
+    sortableTask(imageSort);
+}
+
+function buildWordSort(items) {
+
+    var wordSort = buildTaskEncapsulation();
+
+    for(var index in items) {
+        jQuery('<div class="panel panel-default profile-pic">' + items[index] + '</div>')
+            .appendTo(wordSort);
+    }
+
+    sortableTask(wordSort);
+}
+
+function buildTaskEncapsulation() {
+
+    var taskParent = document.createElement("div");
+    taskParent.className = "task-parent";    
+
+    jQuery(".container .vertical-centerer")[0].appendChild(taskParent);
+
+    var rowWrapper = document.createElement("div");
+    rowWrapper.className = "row";
+    taskParent.appendChild(rowWrapper);
+
+    var sortyBro = document.createElement("div");
+    sortyBro.className = "horizontal-center";
+    rowWrapper.appendChild(sortyBro);
+
+    return sortyBro;
+}
+
+function sortableTask(listParentElement) {
+
     jQuery(window).trigger('resize');
 
-    jQuery( ".sortable" ).sortable({
+    jQuery(listParentElement).sortable({
         placeholder: "profile-panel-placeholder",
         stop: sortableDropped,
         change: sortableSorted
     }).disableSelection();
 
-    jQuery(".sortable .panel:gt(2)").hide();
+    jQuery(listParentElement).children(".panel:gt(2)").hide();
 }
 
 //Array.prototype.shuffle = ...
