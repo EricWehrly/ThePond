@@ -22,10 +22,6 @@ var Profiles = [
         gender: "male"
     },
     {
-        name: "jon",
-        gender: "male"
-    },
-    {
         name: "wes",
         gender: "male"
     },
@@ -37,6 +33,12 @@ var Profiles = [
         name: "raz",
         gender: "male"
     },
+    /*
+    {
+        name: "jon",
+        gender: "male"
+    },
+    */
     
     {
         name: "hetvi",
@@ -70,10 +72,12 @@ var Profiles = [
         name: "radhika",
         gender: "female"
     },
+    /*
     {
         name: "jen",
         gender: "female"
     },
+    */
 ];
 
 var Animals = [
