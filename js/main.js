@@ -84,8 +84,8 @@ function sortableDropped(event, ui) {
     var sortContainer = event.target;
     var droppedClass = event.toElement.className;
 
-    if(jQuery(sortContainer).children(":visible").length > 4) {
-        jQuery(sortContainer).children(":visible:gt(4)").remove();
+    if(jQuery(sortContainer).children(":visible").length > 3) {
+        jQuery(sortContainer).children(":visible:gt(3)").remove();
     }
 
     jQuery(sortContainer).children().each(function( index ) {
@@ -97,6 +97,10 @@ function sortableDropped(event, ui) {
             return false;
         }
     });
+
+    if(jQuery(sortContainer).children(":not(:visible)").length == 0) {
+        nextTask();
+    }
 }
 
 function sortableSorted(event, ui) {
