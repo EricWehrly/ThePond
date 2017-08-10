@@ -3,8 +3,29 @@
 // https://www.w3schools.com/w3css/w3css_cards.asp
 // http://www.unicode.org/emoji/charts/full-emoji-list.html
 
-var LocalUser = {};
+var localUser = {};
 var currentTask = 0;
+
+var taskList = [
+    {
+        // gender selection ...
+    },
+    {
+        "method": "buildImageSort",
+        "parameters": "",
+        "completed": false
+    },
+    {
+        "method": "buildTaskCompletePrompt",
+        "parameters": "",
+        "completed": false
+    },
+    {
+        "method": "buildWordSort",
+        "parameters": "'" + Adjectives.Positive + "'",
+        "completed": false
+    }
+];
 
 jQuery( window ).resize(function() {
 
@@ -41,6 +62,8 @@ function nextTask() {
     // TODO: if there are no tasks or whatever,
     // buildTaskCompletePrompt()
 
+    eval(taskList[currentTask].method + "(" + taskList[currentTask].parameters + ")");
+
     showTask();
 }
 
@@ -54,7 +77,7 @@ function shakeDeny(element, message) {
 
 function genderPreference(preference) {
 
-    LocalUser.GenderPreference = preference;
+    localUser.GenderPreference = preference;
 
     // jQuery(".task-parent .panel-body:not(." + preference + ")").parent().fadeOut(500, function() {
         var genderArray = shuffle(Profiles.filter(genderPreferenceFilter));
@@ -66,107 +89,7 @@ function genderPreference(preference) {
 }
 
 function genderPreferenceFilter(element) {
-    return element.gender == LocalUser.GenderPreference;
-}
-
-function sortableDropped(event, ui) {
-
-    var sortContainer = event.target;
-    var droppedClass = event.toElement.className;
-
-    if(jQuery(sortContainer).children(":visible").length > 3) {
-        jQuery(sortContainer).children(":visible:gt(3)").remove();
-    }
-
-    jQuery(sortContainer).children().each(function( index ) {
-        if(this.style.display == "none") {
-
-            jQuery(this).fadeIn(500);
-            jQuery("html, body").animate({ scrollTop: jQuery(document).height() }, "slow");
-
-            return false;
-        }
-    });
-
-    if(jQuery(sortContainer).children(":not(:visible)").length == 0) {
-        nextTask();
-    }
-}
-
-function sortableSorted(event, ui) {
-
-    // console.log(event);
-    jQuery("html, body").animate({ scrollTop: event.clientY }, "slow");
-}
-
-function buildTaskCompletePrompt() {
-
-    var taskElement = buildTaskEncapsulation();
-
-    jQuery('<h3 class="clearfix">You have completed your pending tasks.</h3>')
-        .appendTo(taskElement);
-
-    jQuery('<button class="btn btn-primary" onClick="buildWordSort(Adjectives.Positive); nextTask();">' 
-                        + 'Please, sir, may I have some more?'
-                    + '</button>')
-        .appendTo(taskElement);
-}
-
-function buildImageSort(items) {
-
-    var imageSort = buildTaskEncapsulation();
-
-    for(var index in items) {
-        jQuery('<div class="panel panel-default profile-pic ' 
-            + items[index].name + '" style="background-image: url(\'img/' + 
-            items[index].name + '.jpg\')"></div>')
-            .appendTo(imageSort);
-    }
-
-    sortableTask(imageSort);
-}
-
-function buildWordSort(items) {
-
-    var wordSort = buildTaskEncapsulation();
-
-    for(var index in items) {
-        jQuery('<div class="panel panel-default profile-pic">' + items[index] + '</div>')
-            .appendTo(wordSort);
-    }
-
-    sortableTask(wordSort);
-}
-
-function buildTaskEncapsulation() {
-
-    var taskParent = document.createElement("div");
-    taskParent.className = "task-parent";    
-
-    jQuery(".container .vertical-centerer")[0].appendChild(taskParent);
-
-    var rowWrapper = document.createElement("div");
-    rowWrapper.className = "row";
-    taskParent.appendChild(rowWrapper);
-
-    var sortyBro = document.createElement("div");
-    sortyBro.className = "horizontal-center";
-    rowWrapper.appendChild(sortyBro);
-
-    return sortyBro;
-}
-
-function sortableTask(listParentElement) {
-
-    jQuery(window).trigger('resize');
-
-    jQuery(listParentElement).sortable({
-        placeholder: "profile-panel-placeholder",
-        stop: sortableDropped,
-        change: sortableSorted
-    }).disableSelection();
-
-    jQuery(listParentElement).children(".panel:gt(2)").hide();
+    return element.gender == localUser.GenderPreference;
 }
 
 //Array.prototype.shuffle = ...
