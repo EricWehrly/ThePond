@@ -37,6 +37,14 @@ jQuery(function() {
 
     // jQuery(window).trigger('resize');
 
+    jQuery(".male").on('click touchstart', function() {
+        genderPreference('male');
+    });
+
+    jQuery(".female").on('click touchstart', function() {
+        genderPreference('female');
+    });
+
     showTask();
 });
 
