@@ -37,11 +37,11 @@ jQuery(function() {
 
     // jQuery(window).trigger('resize');
 
-    jQuery(".male").on('click touchstart', function() {
+    jQuery(".male").one('click ', function(evt) {
         genderPreference('male');
     });
 
-    jQuery(".female").on('click touchstart', function() {
+    jQuery(".female").one('click', function(evt) {
         genderPreference('female');
     });
 
@@ -49,6 +49,8 @@ jQuery(function() {
 });
 
 function showTask(taskNumber) {
+
+    // TODO: make very sure that no other tasks are being displayed
 
     // check if task number exists?
 
