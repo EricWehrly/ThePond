@@ -32,7 +32,7 @@ function buildWordSort(items) {
     var wordSort = buildTaskEncapsulation();
 
     for(var index in items) {
-        jQuery('<div class="panel panel-default profile-pic">' + items[index] + '</div>')
+        jQuery('<div class="panel panel-default"><span>' + items[index] + '</span></div>')
             .appendTo(wordSort);
     }
 
