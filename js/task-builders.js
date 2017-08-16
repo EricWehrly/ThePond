@@ -13,8 +13,6 @@ function buildTaskCompletePrompt() {
 
 function buildImageSort(items) {
 
-    console.log(items);
-
     if(!items) return;
 
     var imageSort = buildTaskEncapsulation();
