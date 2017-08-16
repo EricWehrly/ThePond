@@ -68,9 +68,19 @@ h1 {
     margin-left: 20px;
     margin-right: 20px;
 
+    cursor: pointer;
+}
+
+.task-parent .row .panel span {
+    font-size: 4em;
+    line-height: 2em;
+    padding: 10%;
+}
+
+.task-parent .row .panel span.emoji {
     font-size: 25vmin;
     line-height: 1em;
-    cursor: pointer;
+    padding: 0;
 }
 
 .profile-panel-placeholder {
