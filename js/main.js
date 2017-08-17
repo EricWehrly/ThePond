@@ -35,8 +35,6 @@ jQuery( window ).resize(function() {
 
 jQuery(function() {
 
-    // jQuery(window).trigger('resize');
-
     jQuery(".male").one('click ', function(evt) {
         genderPreference('male');
     });
@@ -91,9 +89,9 @@ function genderPreference(preference) {
 
     // jQuery(".task-parent .panel-body:not(." + preference + ")").parent().fadeOut(500, function() {
         var genderArray = shuffle(Profiles.filter(genderPreferenceFilter));
-        // buildTaskCompletePrompt();
-        buildImageSort(genderArray);
-        // buildWordSort(Adjectives.Positive); 
+        localUser.genderArray_temp = genderArray;   // well, this is bad design
+        taskList[currentTask + 1].parameters = 'localUser.genderArray_temp';
+        
         nextTask();
     // });
 }
