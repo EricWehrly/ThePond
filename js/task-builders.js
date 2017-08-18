@@ -105,49 +105,66 @@ function buildCommentCard() {
     
     jQuery('<div class="panel panel-default comment-card">' +
         '<div class="panel-heading">How was your date with SexBot9000?</div>' +
-        '<div class="panel-body">' + 
-        '<label>What went well?</label>' +
-        '<div class="input-group">' +
-            '<input type="text" class="form-control" id="goodStuff">' +
-            '<div class="btn btn-default input-group-addon"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></div>' +
-        '</div>' +
-        '<div class="alert alert-warning"><i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i> ' +
-        'Custom entered text will need to be reviewed by our staff and may be discarded if you decide to do the dumb.</div>' +
-        '<p></p>' +
-        '<label>What could have gone better?</label>' +
-        '<div class="input-group">' +
-            '<input type="text" class="form-control" id="badStuff">' +
-            '<div class="btn btn-default input-group-addon"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></div>' +
-        '</div>' +
-        '<div class="alert alert-warning"><i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i> ' +
-        'Custom entered text will need to be reviewed by our staff and may be discarded if you decide to do the dumb.</div>' +
-        '</div>' +
+        '<div class="panel-body"><form>' + 
+            '<div class="form-group">' +
+                '<label>What went well?</label>' +
+                '<input type="text" class="form-control" id="goodStuff">' +
+            '</div>' +
+            '<div class="alert alert-warning"><i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i> ' +
+                'Custom entered text will need to be reviewed by our staff and may be discarded if you decide to do the dumb.</div>' +
+            '<p></p>' +
+            '<div class="form-group">' +
+                '<label>What could have gone better?</label>' +
+                '<input type="text" class="form-control" id="badStuff">' +
+            '</div>' +
+            '<div class="alert alert-warning"><i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i> ' +
+                'Custom entered text will need to be reviewed by our staff and may be discarded if you decide to do the dumb.</div>' +
+            '<button type="submit" class="btn btn-primary" disabled>Submit</button>' + 
+        '</form></div>' +
     '</div>')
         .appendTo(taskEncapsulation);
 
-        jQuery(taskEncapsulation).find(".alert").hide();
-        jQuery(taskEncapsulation).find(".input-group-addon").hide();    // ... probably not this later ...
+    jQuery(taskEncapsulation).find(".alert").hide();
+
+    var goodStuff = [];
+    for(var category in CommentCard.Good) {
+        for(var index in CommentCard.Good[category]) {
+            console.log();
+            goodStuff.push({
+                "label": CommentCard.Good[category][index],
+                "category": category
+            })
+        }
+    }
+    var badStuff = [];
+    for(var category in CommentCard.Bad) {
+        for(var index in CommentCard.Bad[category]) {
+            console.log();
+            badStuff.push({
+                "label": CommentCard.Bad[category][index],
+                "category": category
+            })
+        }
+    }
 
     // https://jqueryui.com/autocomplete/#categories
-    jQuery("#goodStuff").autocomplete({
+    jQuery("#goodStuff").catcomplete({
         minLength: 0,
-        source: Object.keys(CommentCard.Good)
+        source: goodStuff
     });
-    jQuery("#badStuff").autocomplete({
+    jQuery("#badStuff").catcomplete({
         minLength: 0,
-        source: Object.keys(CommentCard.Bad)
+        source: badStuff
     }).click(function(event, ui) { jQuery(this).trigger("focus")});
 
     jQuery(".ui-autocomplete-input").on("autocompletechange autocompleteselect", function( event, ui ) {
         
         if(ui.item) {            
-            jQuery(this).parent().next(".alert").hide();
-            jQuery(this).next(".input-group-addon").show();            
+            jQuery(this).parent().next(".alert").hide();          
         } else {     // TODO: enable 'go' button
             jQuery(this).parent().next(".alert").show();
-            jQuery(this).next(".input-group-addon").hide();
         }
     }).click(function() {    
-        jQuery(this).autocomplete( "search", "" );
+        jQuery(this).catcomplete( "search", "" );
     });
 }
