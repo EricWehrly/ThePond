@@ -115,10 +115,15 @@ h1 {
     border-radius: 3px;
 }
 
-.form-group {
+.ui-autocomplete, .comment-card {
     text-shadow: none;
 }
 
-.comment-card {
-    padding: 14px;
+.comment-card .panel-body {
+    padding: 8px;
+}
+
+.task-parent span.glyphicon {
+    font-size: .5em !important;
+    line-height: .5em !important;
 }
