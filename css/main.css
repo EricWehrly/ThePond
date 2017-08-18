@@ -114,3 +114,11 @@ h1 {
     /* min-height: 300px; */
     border-radius: 3px;
 }
+
+.form-group {
+    text-shadow: none;
+}
+
+.comment-card {
+    padding: 14px;
+}
