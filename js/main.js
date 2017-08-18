@@ -11,11 +11,6 @@ var taskList = [
         // gender selection ...
     },
     {
-        "method": "buildCommentCard",
-        "parameters": "",
-        "completed": false
-    },
-    {
         "method": "buildImageSort",
         "parameters": "",
         "completed": false
@@ -28,6 +23,11 @@ var taskList = [
     {
         "method": "buildWordSort",
         "parameters": "'" + Adjectives.Positive + "'",
+        "completed": false
+    },
+    {
+        "method": "buildCommentCard",
+        "parameters": "",
         "completed": false
     }
 ];
