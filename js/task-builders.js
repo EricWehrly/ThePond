@@ -98,3 +98,48 @@ function sortableSorted(event, ui) {
 
     jQuery("html, body").animate({ scrollTop: event.clientY }, "slow");
 }
+
+function buildCommentCard() {
+
+    var taskEncapsulation = buildTaskEncapsulation();
+    
+    jQuery('<div class="panel panel-default comment-card">' +
+        '<div class="panel-heading>How was your date with SoAndSo?</div>' +
+        '<div class="panel-body">' + 
+        '<div class="form-group">' +
+            '<label>What went well?</label>' +
+            '<input type="text" class="form-control" id="goodStuff">' +
+        '</div>' +
+        '<div class="alert alert-warning"><i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i> ' +
+        'Custom entered text will need to be reviewed by our staff and may be discarded if you decide to do the dumb.</div>' +
+        '<div class="form-group">' +
+            '<label>What could have gone better?</label>' +
+            '<input type="text" class="form-control" id="badStuff">' +
+        '</div>' +
+        '<div class="alert alert-warning"><i class="glyphicon glyphicon-warning-sign" aria-hidden="true"></i> ' +
+        'Custom entered text will need to be reviewed by our staff and may be discarded if you decide to do the dumb.</div>' +
+        '</div>' +
+    '</div>')
+        .appendTo(taskEncapsulation);
+
+    console.log(jQuery(taskEncapsulation));
+    console.log(jQuery(taskEncapsulation).children());
+    console.log(jQuery(taskEncapsulation).children(".alert"));
+
+    jQuery(taskEncapsulation).find(".alert").hide();
+
+    // https://jqueryui.com/autocomplete/#categories
+    jQuery("#goodStuff").autocomplete({
+        source: Object.keys(CommentCard.Good)
+    }).on("autocompletechange", function( event, ui ) {
+
+        if(ui.item) {            
+            jQuery(this).parent().next(".alert").hide();
+        } else {     // TODO: enable 'go' button
+            jQuery(this).parent().next(".alert").show();
+        }
+    } )
+    jQuery("#badStuff").autocomplete({
+        source: Object.keys(CommentCard.Bad)
+    });
+}
