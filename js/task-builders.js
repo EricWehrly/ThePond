@@ -16,6 +16,9 @@ function buildImageSort(items) {
     if(!items) return;
 
     var imageSort = buildTaskEncapsulation();
+    
+    jQuery('<div class="panel-heading">Grab and drag to sort by attractiveness</div>')
+        .appendTo(imageSort);
 
     for(var index in items) {
         jQuery('<div class="panel panel-default profile-pic ' 
