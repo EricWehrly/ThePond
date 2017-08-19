@@ -20,11 +20,13 @@ var taskList = [
         "parameters": "",
         "completed": false
     },
+    /*
     {
         "method": "buildWordSort",
         "parameters": "'" + Adjectives.Positive + "'",
         "completed": false
     },
+    */
     {
         "method": "buildCommentCard",
         "parameters": "",
