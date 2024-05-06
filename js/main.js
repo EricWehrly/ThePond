@@ -11,22 +11,22 @@ var taskList = [
         // gender selection ...
     },
     {
-        "method": "buildImageSort",
+        "method": buildImageSort,
         "parameters": "",
         "completed": false
     },
     {
-        "method": "buildTaskCompletePrompt",
+        "method": buildTaskCompletePrompt,
         "parameters": "",
         "completed": false
     },
     {
-        "method": "buildWordSort",
-        "parameters": "'" + Adjectives.Positive + "'",
+        "method": buildWordSort,
+        "parameters": Adjectives.Positive,
         "completed": false
     },
     {
-        "method": "buildCommentCard",
+        "method": buildCommentCard,
         "parameters": "",
         "completed": false
     }
@@ -75,7 +75,7 @@ function nextTask() {
     // TODO: if there are no tasks or whatever,
     // buildTaskCompletePrompt()
 
-    eval(taskList[currentTask].method + "(" + taskList[currentTask].parameters + ")");
+    taskList[currentTask].method(taskList[currentTask].parameters);
 
     showTask();
 }
@@ -94,8 +94,7 @@ function genderPreference(preference) {
 
     // jQuery(".task-parent .panel-body:not(." + preference + ")").parent().fadeOut(500, function() {
         var genderArray = shuffle(Profiles.filter(genderPreferenceFilter));
-        localUser.genderArray_temp = genderArray;   // well, this is bad design
-        taskList[currentTask + 1].parameters = 'localUser.genderArray_temp';
+        taskList[currentTask + 1].parameters = genderArray;
         
         nextTask();
     // });

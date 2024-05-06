@@ -5,7 +5,7 @@ function buildTaskCompletePrompt() {
     jQuery('<h3 class="clearfix">You have completed your pending tasks.</h3>')
         .appendTo(taskElement);
 
-    jQuery('<button class="btn btn-primary" onClick="buildWordSort(Adjectives.Positive); nextTask();">' 
+    jQuery('<button class="btn btn-primary" onClick="nextTask();">' 
                         + 'Please, sir, may I have some more?'
                     + '</button>')
         .appendTo(taskElement);
@@ -17,8 +17,8 @@ function buildImageSort(items) {
 
     var imageSort = buildTaskEncapsulation();
     
-    jQuery('<div class="panel-heading">Grab and drag to sort by attractiveness</div>')
-        .appendTo(imageSort);
+    jQuery('<h4>Grab and drag to sort by attractiveness</h4>')
+        .prependTo(jQuery(imageSort).parent().parent());
 
     for(var index in items) {
         jQuery('<div class="panel panel-default profile-pic ' 
