@@ -2,44 +2,44 @@
 var Profiles = [
 
     {
-        name: "eric",
+        name: "anthony",
         gender: "male"
     },
     {
-        name: "darrell",
+        name: "emilio",
         gender: "male"
     },
     {
-        name: "randall",
+        name: "judd",
         gender: "male"
     },
     {
-        name: "vander",
+        name: "michael",
         gender: "male"
     },
     {
-        name: "george",
+        name: "paul",
         gender: "male"
     },
     
     {
-        name: "hetvi",
+        name: "ally",
         gender: "female"
     },
     {
-        name: "sarah",
+        name: "blanche",
         gender: "female"
     },
     {
-        name: "michelle",
+        name: "haviland",
         gender: "female"
     },
     {
-        name: "michele",
+        name: "molly",
         gender: "female"
     },
     {
-        name: "seme",
+        name: "kelly",
         gender: "female"
     },
 ];
